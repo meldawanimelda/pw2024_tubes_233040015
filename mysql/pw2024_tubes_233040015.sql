@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 13, 2024 at 01:44 PM
+-- Generation Time: May 26, 2024 at 04:39 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -24,12 +24,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Table structure for table `daftarmovie`
 --
 
-CREATE TABLE `role` (
-  `id_role` int NOT NULL,
-  `nama_role` varchar(100) NOT NULL
+CREATE TABLE `daftarmovie` (
+  `id` int NOT NULL,
+  `judul` varchar(100) NOT NULL,
+  `sutradara` varchar(100) NOT NULL,
+  `tanggal_tayang` date NOT NULL,
+  `kategori` varchar(100) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `poster` varbinary(200) NOT NULL,
+  `link` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -40,11 +46,11 @@ CREATE TABLE `role` (
 
 CREATE TABLE `user` (
   `id` int NOT NULL,
-  `gambar` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
+  `username` varchar(30) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `id_role` int NOT NULL
+  `password` varchar(55) NOT NULL,
+  `telepon` int NOT NULL,
+  `alamat` varchar(2655) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -52,27 +58,32 @@ CREATE TABLE `user` (
 --
 
 --
--- Indexes for table `role`
+-- Indexes for table `daftarmovie`
 --
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`id_role`);
+ALTER TABLE `daftarmovie`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_role` (`id_role`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Constraints for table `user`
+-- AUTO_INCREMENT for table `daftarmovie`
+--
+ALTER TABLE `daftarmovie`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`);
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
